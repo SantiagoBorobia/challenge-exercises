@@ -1,6 +1,6 @@
 # Welcome to our Challenge-exercises repo
 
-Hi please help to resolve the issues on this repo, you can create PR to those issues.
+:computer: Howdy! Please help us to resolve the issues on this repo, you can create PRs to those issues.
 
 
 
