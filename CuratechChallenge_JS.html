@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1>Soluciones utilizando JavaScript</h1>
+
+        <p>
+            Los resultados de los ejercicios los imprimo por la consola, utilizando console.log()
+            <br>
+            <br>
+            Para ver los resultados, abrir la consola con "inspect element" desde el navegador...
+        </p>
+
+
+        
+        
+        <script>
+            
+            /*
+            PROBLEM #3
+            Write a short program that prints each number from 1 to 100 on a new line.
+            For each multiple of 3, print "Fizz" instead of the number.
+            For each multiple of 5, print "Buzz" instead of the number.
+            For numbers which are multiples of both 3 and 5, print "FizzBuzz" instead of the number.    
+            */
+            function fizzBuzz(){
+                var i;
+                for(i=1; i<=100; i++){
+                    //Si es multiplo de 3 y 5 escribe "FizzBuzz"
+                    if(i%3==0 && i%5==0)
+                        console.log("FizzBuzz");
+                    //Si es multiplo de 3 escribe "Fizz"
+                    else if(i%3==0)
+                        console.log("Fizz");
+                    //Si es multiplo de 3 escribe "Buzz"
+                    else if(i%5==0)
+                        console.log("Buzz");
+                    //Si no es multiplo de 3 ni de 5 escribe el numero
+                    else 
+                        console.log(i);
+                }
+            }
+            
+            /*
+            PROBLEM #2
+            An avid hiker keeps meticulous records of their hikes. 
+            During the last hike that took exactly steps, for every step it was noted if it was an uphill, Ʊ , or a downhill, Ɗ step. 
+            Hikes always start and end at sea level, and each step up or down represents a 1 unit change in altitude. 
+
+            We define the following terms:
+            A mountain is a sequence of consecutive steps above sea level, starting with a step up from sea level and ending with a step down to sea level.
+            A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.
+
+            Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.   
+            */
+            function countingValleys(steps, path){
+                var cont = 0; //Contador para llevar la cantidad de valles
+                var prev = 0; //Estado del paso previo al actual
+                
+                for (var i=0; i<steps; i++) {
+                    if(prev==0 && path.charAt(i)=='D') //Si el estado es "sea level" y bajo (D), entonces entro a un valle
+                        cont++;
+                    if(path.charAt(i)=='D') //Paso hacia abajo
+                        prev--;
+                    if(path.charAt(i)=='U')  //Paso hacia arriba
+                        prev++;
+                }
+                return cont;
+            }
+            
+            /*
+            Sandy works at a groceries store. 
+            There is a large pile of milk boxes that must be paired by flavor for sale. 
+            Given an array of integers representing the color of each milk box, determine how many pairs of milk boxes with matching colors there are.
+
+            For example, there are n = 7 milk boxes with colors ar = [1, 2, 1, 2, 1, 3, 2]. 
+            There is one pair of color and one of color . 
+            There are three odd socks left, one of each color. 
+            The number of pairs is 2
+            */
+    
+            function MilkMerchant( n, ar){
+                var pares = new Set();  //Crea una instancia de tipo Set
+                var cont = 0; //Contador para llevar el numero de pares de cajas
+
+                for(var i=0; i<n; i++){
+                    if(!pares.has(ar[i])) //Si no hay una caja igual a ar[i] en el Set, la agrega
+                        pares.add(ar[i]);
+                    else{                      //Si ya hay una caja igual a ar[i] en el Set, significa que se encontro un par
+                        pares.delete(ar[i]);   //Entonces se saca el par del Set y se suma el contador
+                        cont++;
+                    }
+                } 
+                return cont;
+            }
+            
+            /*
+            **********************************
+            LLAMADO DE FUNCIONES PARA PRUEBAS
+            ***********************+**********
+            */
+            
+            // Prueba de corrida problema #3
+            console.log("Prueba de fizzBuzz:")
+            fizzBuzz();
+            console.log("");
+            
+            // Prueba de corrida problema #2
+            console.log("Pruebas de countingValleys:")
+            var cv1 = countingValleys(8, "UDDDUDUU");
+            var cv2 = countingValleys(12, "DDUUDDUDUUUD");
+            console.log(cv1);
+            console.log(cv2);
+            console.log("");
+            
+            // Prueba de corrida problema #1
+            console.log("Pruebas de milkMerchant:")
+            var ar1 = [10, 20, 20, 10, 10, 30, 50, 10, 20];
+            var mm1 = MilkMerchant(9, ar1);
+            var ar2 = [4, 5, 5, 5, 6, 6, 4, 1, 4, 4, 3, 6, 6, 3, 6, 1, 4, 5, 5, 5];
+            var mm2 = MilkMerchant(20, ar2);
+            
+            console.log(mm1);
+            console.log(mm2);
+            
+            
+        </script>
+
+    </body>
+</html>
+
